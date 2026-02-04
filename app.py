@@ -45,8 +45,10 @@ def update_students(id):
 
     
 @app.route("/students/<int:id>",methods=["DELETE"])
-def delete_students():
-    return
+def delete_students(id):
+    global students
+    students = [s for s in students if s["id"] != id]
+    return jsonify({"message":"student deleted successfully"}) ,200
 
 if __name__=="__main__":
     app.run(debug=True)
